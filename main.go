@@ -34,4 +34,31 @@ type Env struct {
 }
 
 func main() {
+	envs := []Env{
+		Env{
+			Rx1: GaussRule{0, 3},
+			Rx2: GaussRule{0, 4.01},
+			Ry:  TriangleRule{0, 3.62},
+		},
+		Env{
+			Rx1: GaussRule{3.64, 4.86},
+			Rx2: GaussRule{3.16, 3.35},
+			Ry:  TriangleRule{4.95, 3.66},
+		},
+		Env{
+			Rx1: GaussRule{8, 7.59},
+			Rx2: GaussRule{8, 4.64},
+			Ry:  TriangleRule{8, 1.43},
+		},
+		Env{
+			Rx1: GaussRule{0, 6.49},
+			Rx2: GaussRule{8, 4.65},
+			Ry:  TriangleRule{4, 2.78},
+		},
+		Env{
+			Rx1: GaussRule{8, 7.13},
+			Rx2: GaussRule{0, 4.40},
+			Ry:  TriangleRule{4.55, 3.31},
+		},
+	}
 }
