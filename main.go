@@ -4,61 +4,61 @@ import (
 	"math"
 )
 
-type GaussRule struct {
+type GaussFunction struct {
 	C float64
 	S float64
 }
 
-func (r *GaussRule) Value(x float64) float64 {
-	inner := (x - r.C) / r.S
+func (f *GaussFunction) Value(x float64) float64 {
+	inner := (x - f.C) / f.S
 	return math.Exp(-(inner * inner))
 }
 
-type TriangleRule struct {
+type TriangleFunction struct {
 	C float64
 	B float64
 }
 
-func (r *TriangleRule) Value(x float64) float64 {
-	if x <= r.C {
-		return (x-r.C)/r.B + 1
+func (f *TriangleFunction) Value(x float64) float64 {
+	if x <= f.C {
+		return (x-f.C)/f.B + 1
 	} else {
-		return (r.C-x)/r.B + 1
+		return (f.C-x)/f.B + 1
 	}
 }
 
 type Env struct {
-	Rx1 GaussRule
-	Rx2 GaussRule
-	Ry  TriangleRule
+	Fx1 GaussFunction
+	Fx2 GaussFunction
+	Fy  TriangleFunction
 }
 
 func main() {
 	envs := []Env{
 		Env{
-			Rx1: GaussRule{0, 3},
-			Rx2: GaussRule{0, 4.01},
-			Ry:  TriangleRule{0, 3.62},
+			Fx1: GaussFunction{0, 3},
+			Fx2: GaussFunction{0, 4.01},
+			Fy:  TriangleFunction{0, 3.62},
 		},
 		Env{
-			Rx1: GaussRule{3.64, 4.86},
-			Rx2: GaussRule{3.16, 3.35},
-			Ry:  TriangleRule{4.95, 3.66},
+			Fx1: GaussFunction{3.64, 4.86},
+			Fx2: GaussFunction{3.16, 3.35},
+			Fy:  TriangleFunction{4.95, 3.66},
 		},
 		Env{
-			Rx1: GaussRule{8, 7.59},
-			Rx2: GaussRule{8, 4.64},
-			Ry:  TriangleRule{8, 1.43},
+			Fx1: GaussFunction{8, 7.59},
+			Fx2: GaussFunction{8, 4.64},
+			Fy:  TriangleFunction{8, 1.43},
 		},
 		Env{
-			Rx1: GaussRule{0, 6.49},
-			Rx2: GaussRule{8, 4.65},
-			Ry:  TriangleRule{4, 2.78},
+			Fx1: GaussFunction{0, 6.49},
+			Fx2: GaussFunction{8, 4.65},
+			Fy:  TriangleFunction{4, 2.78},
 		},
 		Env{
-			Rx1: GaussRule{8, 7.13},
-			Rx2: GaussRule{0, 4.40},
-			Ry:  TriangleRule{4.55, 3.31},
+			Fx1: GaussFunction{8, 7.13},
+			Fx2: GaussFunction{0, 4.40},
+			Fy:  TriangleFunction{4.55, 3.31},
 		},
 	}
 }
